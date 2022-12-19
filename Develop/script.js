@@ -79,27 +79,24 @@ const Questions = [{
 
 
 
-// // timedCount();
-//     document.getElementById ("timer").style="display:block;"
-//     if (!this.classList.contains("correct")) {
-//     // time-=10
-// console.log("wrong!")
-// } else {
-//     console.log("correct!")
-// }
+// timedCount();
+    document.getElementById ("timer").style="display:block;"
+    if (!this.classList.contains("correct")) {
+    // time-=10
+console.log("wrong!")
+} else {
+    console.log("correct!")
+}
 
 
-// Q1index ++
-// prequestion ++
+Q1index ++
+prequestion ++
 
-// }
+}
 
-// for(i=0; i<start.length; i++) {
-//     start[i].addEventListener ("click", startQuiz)
-// }
-
-
-
+for(i=0; i<start.length; i++) {
+    start[i].addEventListener ("click", startQuiz)
+}
 
 
 
@@ -107,13 +104,16 @@ const Questions = [{
 
 
 
-// .function countdownFunction () {
-//     // deduct time so that the clock is counting down in the browser
-//     time--;
-//     iTimeShow.textContent = time;
+
+
+
+.function countdownFunction () {
+    // deduct time so that the clock is counting down in the browser
+    time--;
+    iTimeShow.textContent = time;
   
-//     // create a conditional to see if the user has run out of time
-//     if (time <= 0) {
-//       thisIsWhereYourQuizEndingFunctionWouldBeCalled();
-//     }
-//      }
+    // create a conditional to see if the user has run out of time
+    if (time <= 0) {
+      thisIsWhereYourQuizEndingFunctionWouldBeCalled();
+    }
+     }
