@@ -15,6 +15,7 @@ document.getElementById('start').onclick = function startQuiz () {
     nextQuestion();
 }
     
+
 function nextQuestion(){
     document.getElementById('questions').innerHTML =
     `
