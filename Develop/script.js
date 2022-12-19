@@ -5,13 +5,17 @@ var prequestion=0
 var i =0
 
 document.getElementById('start').onclick = function startQuiz () {
+    console.log(i)
     document.querySelector (".card-header").style="display:block;";
     document.querySelector (".start-header").style="display:none;";
     document.querySelector (".start-p1").style="display:none;";
     document.querySelector (".start-p2").style="display:none;";
     document.querySelector ("#start").style="display:none;";
-
-    //document.querySelector (".Q"+Q1index).style="display:block;";
+    
+    nextQuestion();
+}
+    
+function nextQuestion(){
     document.getElementById('questions').innerHTML =
     `
     <h3>${Questions[i].q}</h3>
@@ -20,18 +24,35 @@ document.getElementById('start').onclick = function startQuiz () {
     <button>${Questions[i].a[2].text}</button>
     <button>${Questions[i].a[3].text}</button>
     `
-// if (prequestion!=0) {
-//     document.querySelector (".Q"+prequestion).style="display:none;";
-// }
+    i++;
 }
 
-for(i=0; i<start.length; i++) 
-    // start[i].document.getElementById ("click",)}
+
+function nextQuestion(){
+    document.getElementById('questions').innerHTML =
+    `
+    <h3>${Questions[i].q}</h3>
+    <button onclick = "checkAnswer(${Questions[i].a[0].tex})">${Questions[i].a[0].text}</button>
+    <button onclick = "checkAnswer(${Questions[i].a[1].tex})">${Questions[i].a[1].text}</button>
+    <button onclick = "checkAnswer(${Questions[i].a[2].tex})">${Questions[i].a[2].text}</button>
+    <button onclick = "checkAnswer(${Questions[i].a[3].tex})">${Questions[i].a[3].text}</button>
+   `
+   i++;
+}
+
+
+checkAnswer(selected) {
+if (![i].contains ("correct")){
+    console.log("Wrong!")
+} else {
+    console.log ("Correct!")
+}}
 
 
 
 
-
+// for(i=0; i<start.length; i++) {
+    //     start[i].addEventListener ("click", startQuiz)
 
 
 var qHeader = document.getElementById("qHeader")
