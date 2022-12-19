@@ -13,7 +13,7 @@ function startQuiz () {
     document.querySelector (".Q"+Q1index).style="display:block;";
 if (prequestion!=0) {
     document.querySelector (".Q"+prequestion).style="display:none;";
-}
+}}
 
 
 var qHeader = document.getElementById("qHeader")
@@ -70,13 +70,8 @@ const Questions = [{
         { text: "booleans", isCorrect: false },
         { text: "all_of_the_above", isCorrect: true }
         ]
-},
 
-
-
-
-
-
+}],
 
 
 // timedCount();
@@ -87,7 +82,6 @@ console.log("wrong!")
 } else {
     console.log("correct!")
 }
-
 
 Q1index ++
 prequestion ++
@@ -100,14 +94,7 @@ for(i=0; i<start.length; i++) {
 
 
 
-
-
-
-
-
-
-
-.function countdownFunction () {
+function countdownFunction () {
     // deduct time so that the clock is counting down in the browser
     time--;
     iTimeShow.textContent = time;
