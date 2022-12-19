@@ -1,146 +1,121 @@
-// Set start
-var start = document.querySelectorAll(".btn");
-var Q1index=0
-var prequestion=0
-var i =0
+const startButton = document.getElementById ("start-btn")
+const nextButton = document.getElementById ("next-btn")
+const questionContainerElement = document.getElementById ("question-container")
+const questionContainerElement= document.getElementById("question")
+const answerButtonsElement = document.getElementById("answer-buttons")
 
-document.getElementById('start').onclick = function startQuiz () {
-    console.log(i)
-    document.querySelector (".card-header").style="display:block;";
-    document.querySelector (".start-header").style="display:none;";
-    document.querySelector (".start-p1").style="display:none;";
-    document.querySelector (".start-p2").style="display:none;";
-    document.querySelector ("#start").style="display:none;";
-    
-    nextQuestion();
-}
-    afsdfsfasfsf
 
-function nextQuestion(){
-    document.getElementById('questions').innerHTML =
-    `
-    <h3>${Questions[i].q}</h3>
-    <button>${Questions[i].a[0].text}</button>
-    <button>${Questions[i].a[1].text}</button>
-    <button>${Questions[i].a[2].text}</button>
-    <button>${Questions[i].a[3].text}</button>
-    `
-    i++;
+let shuffledQuestions, currentQuestionIndex
+startButton.addEventListener("click", startGame)
+nextButton.addEventListener("click", () => {
+    currentQuestionIndex++
+    setNextQuestion()
+})
+
+function startGame() {
+    console.log("Started")
+    startButton.classList.add("hide")
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    currentQuestionIndex = 0
+    questionContainerElement.classList.remove("hide")
+    setNextQuestion()
 }
 
-
-function nextQuestion(){
-    document.getElementById('questions').innerHTML =
-    `
-    <h3>${Questions[i].q}</h3>
-    <button onclick = "checkAnswer(${Questions[i].a[0].tex})">${Questions[i].a[0].text}</button>
-    <button onclick = "checkAnswer(${Questions[i].a[1].tex})">${Questions[i].a[1].text}</button>
-    <button onclick = "checkAnswer(${Questions[i].a[2].tex})">${Questions[i].a[2].text}</button>
-    <button onclick = "checkAnswer(${Questions[i].a[3].tex})">${Questions[i].a[3].text}</button>
-   `
-   i++;
+function setNextQuestion() {
+    restState()
+    showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 
+function showQuestion(question) {
+    questionContainerElement.innerText = question.question
+    question.answers.forEach(answer => {
+        const button = document.createElement ("button")
+        button.innerText = answer.text
+        button.classList.add("btn")
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener("click", selectAnswer)
+        answerButtonsElement.appendChild(button)
+    })
+}
 
-checkAnswer(selected) {
-if (![i].contains ("correct")){
-    console.log("Wrong!")
-} else {
-    console.log ("Correct!")
-}}
-
-
-
-
-// for(i=0; i<start.length; i++) {
-    //     start[i].addEventListener ("click", startQuiz)
-
-
-var qHeader = document.getElementById("qHeader")
-var qcontainer = document.getElementById("question-Container")
-
-// function createQuestion () {
-//     var Arr = Questions[Q1index].a
-//     var question = Questions [Q1index].q
-//     qHeader.textContent = question
-//     console.log (question)
-
-
-// for(var i = 0; i <Arr.length; i ++){
-//         var button = document.createElement("button")
-//         console.log(Arr[i])
-//         button.textContent = Arr[i].text
-//         qcontainer.appendChild(button)
-//     }
-
-
-
-const Questions = [{
-    id: 0,
-    q: "What is HTML stands for?",
-    a: [{ text: "Hypertext Markup Language", isCorrect: false },
-        { text: "Cascading Style Sheets", isCorrect: true },
-        { text: "Algorithm", isCorrect: false }, 
-        { text: "jQuery", isCorrect: false }
-        ]
-},
-{
-    id: 1,
-    q: "What is CSS stands for?",
-    a: [{ text: "Hypertext Markup Language", isCorrect: false },
-        { text: "Cascading Style Sheets", isCorrect: true },
-        { text: "Algorithm", isCorrect: false },
-        { text: "jQuery", isCorrect: false }
-        ]
-},
-{
-    id: 2,
-    q: "The condition in an if / else statement is enclosed with _____.",
-    a: [{ text: "quotes", isCorrect: false   },
-        { text: "curly_brackets", isCorrect: false },
-        { text: "parenthesis", isCorrect: true },
-        { text: "Square Brackets", isCorrect: false }
-        ]        
-},
-{
-    id: 3,
-    q: "Arrays in JavaScript can be used to store _____.",
-    a: [{ text: "numbers_and_strings", isCorrect: false },
-        { text: "other_Arrays", isCorrect: false },
-        { text: "booleans", isCorrect: false },
-        { text: "all_of_the_above", isCorrect: true }
-        ]
-
-}]
-
-
-// timedCount();
-//     document.getElementById("timer").style.display = "block"
-//     if (!this.classList.contains("correct")) {
-//     // time-=10
-// console.log("wrong!")
-// } else {
-//     console.log("correct!")
-// }
-
-// Q1index ++
-// prequestion ++
-
-//  }
-
-// for(i=0; i<start.length; i++) {
-//     start[i].addEventListener ("click", startQuiz)
-// }
-
-
-
-function countdownFunction () {
-    // deduct time so that the clock is counting down in the browser
-    time--;
-    iTimeShow.textContent = time;
-  
-    // create a conditional to see if the user has run out of time
-    if (time <= 0) {
-      thisIsWhereYourQuizEndingFunctionWouldBeCalled();
+function resetState() {
+    clearStatusClass(document.body)
+    nextButton.classList.add("hide")
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild
+        (answerButtonsElement.firstChild)
     }
-     }
+}
+
+
+function selectAnswer() {
+ const selectedButton = e.target
+ const correct = selectedButton.dataset.correct
+ setStatusClass(document.body, correct)
+ Array.from(answerButtonsElement.children).forEach(button => {
+    setStatusClass(button, button.dataset.correct)
+ })
+ if (shuffledQuestions.length > currentQuestionIndex + 1) {
+    nextButton.classList.remove("hide")
+    } else {
+        startButton.innerText = "Restart"
+        startButton.classList.remove("hide")
+    }
+ }
+
+
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add("correct")
+    } else {
+        element.classList.add("wrong")
+    }
+}
+
+function clearStatusClass(element) {
+    element.classList.remove("correct")
+    element.classList.remove ("wrong")
+}
+
+
+const question = [
+    {
+        question: "What is HTML stands for?",
+        answers: [
+            {text: "Hypertext Markup Language", corect: true },
+            {text: "Cascading Style Sheets", corect: false },
+            {text: "Algorithm", corect: false },
+            {text: "jQuery", corect: false },
+        ]
+    },
+{
+    question: "What is CSS stands for?",
+    answers: [
+        {text: "Hypertext Markup Language", corect: false },
+        {text: "Cascading Style Sheets", corect: true },
+        {text: "Algorithm", corect: false },
+        {text: "jQuery", corect: false },
+    ]
+},
+{
+    question: "The condition in an if / else statement is enclosed with _____.",
+    answers: [
+        {text: "Quotes", corect: false },
+        {text: "Curly Brackets", corect: false },
+        {text: "Parenthesis", corect: true },
+        {text: "Square Backets", corect: false },
+    ]
+},
+{
+    question: "Arrays in JavaScript can be used to store _____.",
+    answers: [
+        {text: "Numbers and Strings", corect: false },
+        {text: "Other Arrays", corect: false },
+        {text: "Booleans", corect: false },
+        {text: "All of the above", corect: true },
+    ]
+}
+]
