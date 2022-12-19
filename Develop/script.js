@@ -2,36 +2,54 @@
 var start = document.querySelectorAll(".btn");
 var Q1index=0
 var prequestion=0
+var i =0
 
-function startQuiz () {
+document.getElementById('start').onclick = function startQuiz () {
     document.querySelector (".card-header").style="display:block;";
     document.querySelector (".start-header").style="display:none;";
     document.querySelector (".start-p1").style="display:none;";
     document.querySelector (".start-p2").style="display:none;";
     document.querySelector ("#start").style="display:none;";
 
-    document.querySelector (".Q"+Q1index).style="display:block;";
-if (prequestion!=0) {
-    document.querySelector (".Q"+prequestion).style="display:none;";
-}}
+    //document.querySelector (".Q"+Q1index).style="display:block;";
+    document.getElementById('questions').innerHTML =
+    `
+    <h3>${Questions[i].q}</h3>
+    <button>${Questions[i].a[0].text}</button>
+    <button>${Questions[i].a[1].text}</button>
+    <button>${Questions[i].a[2].text}</button>
+    <button>${Questions[i].a[3].text}</button>
+    `
+// if (prequestion!=0) {
+//     document.querySelector (".Q"+prequestion).style="display:none;";
+// }
+}
+
+for(i=0; i<start.length; i++) 
+    // start[i].document.getElementById ("click",)}
+
+
+
+
+
 
 
 var qHeader = document.getElementById("qHeader")
 var qcontainer = document.getElementById("question-Container")
 
-function createQuestion () {
-    var Arr = Questions[Q1index].a
-    var question = Questions [Q1index].q
-    qHeader.textContent = question
-    console.log (question)
+// function createQuestion () {
+//     var Arr = Questions[Q1index].a
+//     var question = Questions [Q1index].q
+//     qHeader.textContent = question
+//     console.log (question)
 
 
-for(var i = 0; i <Arr.length; i ++){
-        var button = document.createElement("button")
-        console.log(Arr[i])
-        button.textContent = Arr[i].text
-        qcontainer.appendChild(button)
-    }
+// for(var i = 0; i <Arr.length; i ++){
+//         var button = document.createElement("button")
+//         console.log(Arr[i])
+//         button.textContent = Arr[i].text
+//         qcontainer.appendChild(button)
+//     }
 
 
 
@@ -71,26 +89,26 @@ const Questions = [{
         { text: "all_of_the_above", isCorrect: true }
         ]
 
-}],
+}]
 
 
 // timedCount();
-    document.getElementById ("timer").style="display:block;"
-    if (!this.classList.contains("correct")) {
-    // time-=10
-console.log("wrong!")
-} else {
-    console.log("correct!")
-}
+//     document.getElementById("timer").style.display = "block"
+//     if (!this.classList.contains("correct")) {
+//     // time-=10
+// console.log("wrong!")
+// } else {
+//     console.log("correct!")
+// }
 
-Q1index ++
-prequestion ++
+// Q1index ++
+// prequestion ++
 
-}
+//  }
 
-for(i=0; i<start.length; i++) {
-    start[i].addEventListener ("click", startQuiz)
-}
+// for(i=0; i<start.length; i++) {
+//     start[i].addEventListener ("click", startQuiz)
+// }
 
 
 
