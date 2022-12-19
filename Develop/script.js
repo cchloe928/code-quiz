@@ -32,10 +32,10 @@ function createQuestion () {
 
 
 function createQuestion () {
-    Questions [Q1index].a = Array
+    Questions [Q2index].a = Array
     for(var i = 0; i, Questions[Q1index].a.length; i ++) {
         var button = document.createElement("button")
-        Questions[Q1index].a[i]
+        Questions[Q2index].a[i]
         const Questions = [{
             id: 1,
             q: "What is CSS stands for?",
@@ -47,10 +47,10 @@ function createQuestion () {
         },
 
 function createQuestion () {
-    Questions [Q1index].a = Array
+    Questions [Q3index].a = Array
     for(var i = 0; i, Questions[Q1index].a.length; i ++) {
         var button = document.createElement("button")
-        Questions[Q1index].a[i]
+        Questions[Q3index].a[i]
         const Questions = [{
             id: 2,
             q: "The condition in an if / else statement is enclosed with _____.",
@@ -62,10 +62,10 @@ function createQuestion () {
         },
 
 function createQuestion () {
-    Questions [Q1index].a = Array
+    Questions [Q4index].a = Array
     for(var i = 0; i, Questions[Q1index].a.length; i ++) {
         var button = document.createElement("button")
-        Questions[Q1index].a[i]
+        Questions[Q4index].a[i]
         const Questions = [{
             id: 3,
             q: "Arrays in JavaScript can be used to store _____.",
