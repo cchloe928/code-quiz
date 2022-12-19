@@ -1,7 +1,7 @@
 const startButton = document.getElementById ("start-btn")
 const nextButton = document.getElementById ("next-btn")
 const questionContainerElement = document.getElementById ("question-container")
-const questionContainerElement= document.getElementById("question")
+const questionElement= document.getElementById("question")
 const answerButtonsElement = document.getElementById("answer-buttons")
 
 
@@ -22,7 +22,7 @@ function startGame() {
 }
 
 function setNextQuestion() {
-    restState()
+    resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 
