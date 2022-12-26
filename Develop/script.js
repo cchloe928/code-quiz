@@ -3,8 +3,15 @@ const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
+const pStart = document.querySelector('.p-start')
+const submitButton = document.querySelector('#submit-btn')
+const finish = document.querySelector('.finish')
+var time = 60
+const timerEL = document.querySelector('.time')
 
 let shuffledQuestions, currentQuestionIndex
+
+
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
@@ -14,6 +21,13 @@ nextButton.addEventListener('click', () => {
 
 function startGame() {
   startButton.classList.add('hide')
+  pStart.classList.add('hide')
+
+var timer = setInterval(() => {
+  time -- 
+  timerEL.textContent=time
+}, 1000);
+
   shuffledQuestions = questions.sort(() => Math.random() - .5)
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
@@ -33,7 +47,10 @@ function showQuestion(question) {
     button.classList.add('btn')
     if (answer.correct) {
       button.dataset.correct = answer.correct
+    }else {
+      time-=10
     }
+
     button.addEventListener('click', selectAnswer)
     answerButtonsElement.appendChild(button)
   })
@@ -57,12 +74,25 @@ function selectAnswer(e) {
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove('hide')
   } else {
+
     startButton.innerText = 'Restart'
     startButton.classList.remove('hide')
-    startButton.innerText = 'Clear High Score'
-    startButton.classList.remove('hide')
+    // submitButton.innerText = 'Submit'
+    submitButton.classList.remove('hide')
+    answerButtonsElement.classList.add('hide')
+    finish.classList.remove('hide')
+    questionElement.classList.add('hide')
   }
 }
+
+function submitscore() {
+  let initial = document.querySelector('#initials').value
+  let score = time
+  localStorage.setItem(initial,score)
+}
+
+submitButton.addEventListener('click', submitscore)
+
 
 function setStatusClass(element, correct) {
   clearStatusClass(element)
